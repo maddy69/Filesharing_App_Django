@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Activation Failed</h2>
+    <p>Sorry, your activation link is invalid or has expired. Please try signing up again or contact support if you continue to experience issues.</p>
+    <a href="{% url 'signup' %}">Return to Signup</a>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% load static %}
+<br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fileshare System</title>
+    <!-- You can link to external stylesheets (like Bootstrap) here if needed -->
+    <link rel="stylesheet" href="{% static 'styles.css' %}">  <!-- example if you have a CSS file in a 'static' folder -->
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% if user.userprofile.user_type == 'OPS' %}
+                        <li><a href="{% url 'upload' %}">Upload File</a></li>
+                    {% elif user.userprofile.user_type == 'CLIENT' %}
+                        <li><a href="{% url 'file_list' %}">List Files</a></li>
+                    {% endif %}
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}  <!-- This block will be overridden by child templates -->
+    </main>
+
+    <footer>
+        <p>Fileshare System</p>
+    </footer>
+</body>
+</html>

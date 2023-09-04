@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Available Files</h2>
+<ul>
+    {% for file in files %}
+    <li>
+        <a href="{{ file.file.url }}">{{ file.file.name }}</a> 
+        <!-- This will create a link to download the file -->
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
